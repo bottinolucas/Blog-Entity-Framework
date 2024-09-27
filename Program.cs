@@ -82,17 +82,28 @@ using (var ctx = new BlogDataContext())
   // ctx.Posts.Add(post);
   // ctx.SaveChanges();
 
-  var posts = ctx
-    .Posts
-    .AsNoTracking()
-    .Include(x => x.Author) //Inner Join com Author
-    .Include(y => y.Category) //Inner Join com Category
-      .ThenInclude(z => z.Name)
-    .OrderByDescending(x => x.LastUpdateDate)
-    .ToList();
+  // var posts = ctx
+  //   .Posts
+  //   .AsNoTracking()
+  //   .Include(x => x.Author) //Inner Join com Author
+  //   .Include(y => y.Category) //Inner Join com Category
+  //   .OrderByDescending(x => x.LastUpdateDate)
+  //   .ToList();
 
-  foreach(var post in posts)
-  {
-    Console.WriteLine($"{post.Title} escrito por {post.Author?.Name} em {post.Category?.Name}");
-  }
+  // foreach(var post in posts)
+  // {
+  //   Console.WriteLine($"{post.Title} escrito por {post.Author?.Name} em {post.Category?.Name}");
+  // }
+
+  var post = ctx
+    .Posts
+    //.AsNoTracking()
+    .Include(x => x.Author)
+    .Include(x => x.Category)
+    .OrderByDescending(x => x.LastUpdateDate)
+    .FirstOrDefault();
+
+  post.Author.Name = "Teste para troca";
+  ctx.Posts.Update(post);
+  ctx.SaveChanges();
 }
