@@ -18,6 +18,7 @@ namespace BlogEF.Models
         [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public User Author { get; set; }
         [ForeignKey("AuthorId")]
         public int AuthorId { get; set; }
     }

@@ -54,5 +54,31 @@ using (var ctx = new BlogDataContext())
   
   // Console.WriteLine(tag?.Name);
 
-  
+  var user = new User(){
+    Name = "Lucas Bottino",
+    Slug = "lucasbottino",
+    Email = "lucasgabottino@gmail.com",
+    Bio = "Estudante de Engenharia de Software",
+    Image = "https://balta.io",
+    PasswordHash = "1q2w3e4r5t6y"
+  };
+
+  var category = new Category{
+    Name = "Backend",
+    Slug = "backend"
+  };
+
+  var post = new Post{
+    Author = user,
+    Category = category,
+    Body = "<p>Hello World!</p>",
+    Slug = "Entity Framework basico",
+    Summary = "Aprendendo EF Core",
+    Title = "EF Core",
+    CreateDate = DateTime.Now,
+    LastUpdateDate = DateTime.Now
+  };
+
+  ctx.Posts.Add(post);
+  ctx.SaveChanges();
 }
