@@ -47,10 +47,12 @@ using (var ctx = new BlogDataContext())
   //   System.Console.WriteLine(item.Name);
   // }
 
-  var tag = ctx
-    .Tags
-    .AsNoTracking()
-    .FirstOrDefault(x => x.Id == 2);
+  // var tag = ctx
+  //   .Tags
+  //   .AsNoTracking()
+  //   .FirstOrDefault(x => x.Id == 2);
   
-  System.Console.WriteLine(tag?.Name);
+  // Console.WriteLine(tag?.Name);
+
+  
 }
