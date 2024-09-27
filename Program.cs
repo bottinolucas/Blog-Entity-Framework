@@ -1,5 +1,6 @@
 ﻿using BlogEF.Data;
 using BlogEF.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
 
 using (var ctx = new BlogDataContext())
@@ -23,7 +24,33 @@ using (var ctx = new BlogDataContext())
 
   //DELETE
   //Exemplo: Remover uma Tag 
-  var tag = ctx.Tags.FirstOrDefault(x => x.Id == 1);
-  ctx.Remove(tag);
-  ctx.SaveChanges();
+  // var tag = ctx.Tags.FirstOrDefault(x => x.Id == 1);
+  // ctx.Remove(tag);
+  // ctx.SaveChanges();
+
+  // var tags = ctx
+  //   .Tags
+  //   .Where(x => x.Name.Contains(".NET"))
+  //   .ToList();
+
+  //Where ANTES de ToList executa a query em tempo de execucao +Performance
+  //Where DEPOIS de ToList executa a query no SGBD
+
+  // var tags = ctx
+  //   .Tags
+  //   .AsNoTracking()
+  //   .ToList();
+
+  // //AsNoTracking desabilita a consulta (++Performance)
+
+  // foreach(var item in tags) {
+  //   System.Console.WriteLine(item.Name);
+  // }
+
+  var tag = ctx
+    .Tags
+    .AsNoTracking()
+    .FirstOrDefault(x => x.Id == 2);
+  
+  System.Console.WriteLine(tag?.Name);
 }
