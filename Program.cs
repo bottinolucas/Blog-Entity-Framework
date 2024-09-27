@@ -85,12 +85,14 @@ using (var ctx = new BlogDataContext())
   var posts = ctx
     .Posts
     .AsNoTracking()
-    .Include(x => x.Author)
+    .Include(x => x.Author) //Inner Join com Author
+    .Include(y => y.Category) //Inner Join com Category
+      .ThenInclude(z => z.Name)
     .OrderByDescending(x => x.LastUpdateDate)
     .ToList();
 
   foreach(var post in posts)
   {
-    Console.WriteLine($"{post.Title} escrito por {post.Author?.Name}");
+    Console.WriteLine($"{post.Title} escrito por {post.Author?.Name} em {post.Category?.Name}");
   }
 }

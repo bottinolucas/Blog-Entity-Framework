@@ -14,7 +14,9 @@ namespace BlogEF.Data
         public DbSet<User> Users { get; set; }
         //public DbSet<UserRole> UserRoles { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
         optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Blog;User ID=sa;Password=34358873Lucas;TrustServerCertificate=True");
+        optionsBuilder.LogTo(Console.WriteLine);
+        }
     }   
 }
