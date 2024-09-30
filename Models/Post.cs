@@ -12,6 +12,6 @@ namespace BlogEF.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public User Author { get; set; }
-        public int AuthorId { get; set; }
+        public List<Tag> Tags { get; set; } 
     }
 }

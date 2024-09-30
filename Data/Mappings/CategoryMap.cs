@@ -28,6 +28,10 @@ namespace BlogEF.Data.Mappings
           .HasColumnName("Slug")
           .HasColumnType("VARCHAR")
           .HasMaxLength(80);
+        
+        //Indices
+        builder.HasIndex(x => x.Slug, "IX_Category_Slug")
+          .IsUnique();
       }
     }
 }
