@@ -32,6 +32,8 @@ namespace BlogEF.Data.Mappings
         //Indices
         builder.HasIndex(x => x.Slug, "IX_Category_Slug")
           .IsUnique();
+
+        
       }
     }
 }
